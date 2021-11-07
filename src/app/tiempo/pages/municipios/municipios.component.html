@@ -1,0 +1,37 @@
+<div *ngIf="loading">
+    <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+</div>
+<div *ngIf="error" class="centered">
+    <p-message severity="error" [text]="error"></p-message>
+</div>
+
+
+<div *ngIf="tiempo" class="text-layout">
+    <h1 class="titulo">{{tiempo.municipio.NOMBRE}} - {{tiempo.municipio.NOMBRE_PROVINCIA}}</h1>
+    <h1>{{(tiempo.fecha | date: 'EEEE, d MMMM' : '' : 'es') | uppercase}}</h1>
+    <div class="grid">
+        <div class="col-6 text-left">
+            <p>{{tiempo.stateSky.description}}</p>
+            <p>
+                <i class="pi pi-arrow-up icono-temperaturas"></i>
+                <span>{{tiempo.temperaturas.max}}°C </span>
+                <i class="pi pi-arrow-down icono-temperaturas"></i>
+                <span>{{tiempo.temperaturas.min}}°C </span>
+            </p>
+            <div class="grados">
+                <span>{{tiempo.temperatura_actual}}°C</span>
+                
+                <img class="icono" [src]="tiempo.stateSky.id | icono" alt="">
+
+            </div>
+        </div>
+        <div class="col-6 text-right">
+            <p>Humedad: {{tiempo.humedad}}%</p>
+            <p>Viento: {{tiempo.viento}}km/h</p>
+            <p>Lluvia: {{tiempo.lluvia}}%</p>
+        </div>
+    </div>
+    <p-card header="PREVISIÓN">
+
+    </p-card>
+</div>
