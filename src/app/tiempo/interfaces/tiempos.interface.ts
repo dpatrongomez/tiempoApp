@@ -39,7 +39,7 @@ export interface Hoy {
 }
 
 export interface HoyAttributes {
-    fecha: Date;
+    fecha: string;
     orto:  string;
     ocaso: string;
 }

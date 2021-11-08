@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TiempoService } from '../../services/tiempos.service';
-import { catchError, switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { delay } from 'rxjs/internal/operators';
-import { Tiempo } from '../../interfaces/tiempos.interface';
-import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs/internal/observable/of';
+import { Tiempo, Hoy } from '../../interfaces/tiempos.interface';
+import { Prevision } from '../../interfaces/prevision.interface';
 
 @Component({
   selector: 'app-municipios',
@@ -29,35 +33,17 @@ export class MunicipiosComponent implements OnInit {
         switchMap((params) => this.tiemposService.getTiempoMunicipio(params.id))
       )
 
-      // .subscribe(tiempo => this.tiempo = tiempo);
       .subscribe(
         (response) => {
           this.tiempo = response;
           this.loading = false;
         },
         (err) => {
-          if(err.status === 500) {
-            this.error = 'Código inválido'
+          if (err.status === 500) {
+            this.error = 'Código inválido';
           }
           this.loading = false;
-          console.log('HTTP Error', err);
         }
       );
   }
-  // this.activatedRoute.params.subscribe(({ id }) => {
-  //   this.tiemposService
-  //     .getTiempoMunicipio(id)
-
-  //     .subscribe(
-  //       (response) => {
-  //         this.tiempo = response;
-  //         this.loading = false;
-  //       },
-  //       (err) => {
-  //         console.log('HTTP Error', err)
-  //         this.loading = false;
-  //       }
-
-  //     );
-  // });
 }

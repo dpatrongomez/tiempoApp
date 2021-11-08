@@ -1,0 +1,13 @@
+<p-card header="PREVISIÓN">
+    <hr>
+    <div class="grid-prevision">
+        <div *ngFor="let tiempo of getPrevision()">
+                <p><b>{{tiempo.hora}}</b></p>
+                <p><img class="icono2" [src]="tiempo.estado_cielo | icono" alt=""></p>
+                <p><span>{{tiempo.temperatura}}</span></p>
+                <p><span>{{tiempo.precipitacion}}</span></p>
+                <p><span>{{tiempo.viento}}</span></p>
+        </div>
+    </div>
+
+</p-card>

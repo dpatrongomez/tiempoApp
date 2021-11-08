@@ -5,6 +5,7 @@ import { MunicipiosComponent } from './pages/municipios/municipios.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { IconoPipe } from './pipes/icono.pipe';
+import { PrevisionComponent } from './pages/municipios/components/prevision/prevision.component';
 
 
 
@@ -12,7 +13,8 @@ import { IconoPipe } from './pipes/icono.pipe';
   declarations: [
     MunicipiosComponent,
     PrincipalComponent,
-    IconoPipe
+    IconoPipe,
+    PrevisionComponent
   ],
   imports: [
     CommonModule,
