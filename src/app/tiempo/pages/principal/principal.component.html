@@ -1,1 +1,25 @@
-<p>principal works!</p>
+<div *ngIf="loading">
+    <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+</div>
+<div *ngIf="error" class="centered">
+    <p-message severity="error" [text]="error"></p-message>
+</div>
+<div class="card" *ngIf="provincias">
+    <div class="field grid justify-content-center">
+        <div class="p-inputgroup col-12 mt-5 mb-2 md:col-6">
+            <p-dropdown [options]="provincias!" [(ngModel)]="provinciaSeleccionada"
+                placeholder="Seleccione una provincia" optionLabel="NOMBRE_PROVINCIA" [style]="{'width':'100%'}">
+            </p-dropdown>
+            <button pButton type="button" label="Seleccionar" icon="pi pi-search" [loading]="buscando"
+                (click)="seleccionar()"></button>
+        </div>
+    </div>
+
+    <div class="field grid justify-content-center" *ngIf="municipios">
+        <div class="p-inputgroup col-12 mb-2 md:col-6">
+            <p-dropdown [options]="municipios!" [(ngModel)]="municipioSeleccionado"
+                placeholder="Seleccione un municipio" optionLabel="NOMBRE" [style]="{'width':'100%'}"></p-dropdown>
+            <button pButton type="button" label="Consultar" icon="pi pi-search" (click)="consultar()"></button>
+        </div>
+    </div>
+</div>

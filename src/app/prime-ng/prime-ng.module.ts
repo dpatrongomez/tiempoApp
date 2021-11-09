@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 //PrimeNg
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
@@ -15,6 +16,7 @@ import {MessageModule} from 'primeng/message';
   exports: [
     ButtonModule,
     CardModule,
+    DropdownModule,
     FieldsetModule,
     InputTextModule,
     MenubarModule,

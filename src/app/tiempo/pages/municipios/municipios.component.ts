@@ -1,15 +1,9 @@
-import {
-  AfterContentInit,
-  AfterViewInit,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TiempoService } from '../../services/tiempos.service';
 import { switchMap } from 'rxjs/operators';
 import { delay } from 'rxjs/internal/operators';
-import { Tiempo, Hoy } from '../../interfaces/tiempos.interface';
-import { Prevision } from '../../interfaces/prevision.interface';
+import { Tiempo } from '../../interfaces/tiempos.interface';
 
 @Component({
   selector: 'app-municipios',
