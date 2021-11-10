@@ -4,7 +4,7 @@ import { PrincipalComponent } from './tiempo/pages/principal/principal.component
 import { MunicipiosComponent } from './tiempo/pages/municipios/municipios.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: PrincipalComponent,

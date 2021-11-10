@@ -7,11 +7,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
-import {AutoCompleteModule} from 'primeng/autocomplete';
-
+import { ProgressBarModule } from 'primeng/progressbar';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   exports: [
@@ -24,7 +23,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     ProgressBarModule,
     MessagesModule,
     MessageModule,
-    AutoCompleteModule
-  ]
+    AutoCompleteModule,
+  ],
 })
-export class PrimeNgModule { }
+export class PrimeNgModule {}

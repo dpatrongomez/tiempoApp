@@ -22,4 +22,5 @@ describe('PrevisionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
