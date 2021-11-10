@@ -3,7 +3,13 @@
         <img src="./favicon.ico" class="p-mr-2">
     </ng-template>
     <ng-template pTemplate="end">
-        <input type="text" pInputText placeholder="Buscar municipio">
+        <p-autoComplete [(ngModel)]="municipioSeleccionado" [suggestions]="municipiosFiltrados" (completeMethod)="filter($event)" field="NOMBRE" [forceSelection]="true" (onSelect)="buscar($event)" placeholder="Buscar municipio">
+            <ng-template let-municipio pTemplate="item">
+                <div class="municipio-item">
+                  <div>{{municipio.NOMBRE}}</div>
+                </div>
+              </ng-template>
+        </p-autoComplete>  
         <i class="pi pi-search" id="search-icon"></i>
     </ng-template>
 </p-menubar>

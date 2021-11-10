@@ -19,8 +19,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    PrimeNgModule
+    PrimeNgModule,
+    FormsModule
   ], 
 })
 export class TiempoModule { }

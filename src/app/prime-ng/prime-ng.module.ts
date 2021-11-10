@@ -10,6 +10,7 @@ import { MenubarModule } from 'primeng/menubar';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MessageModule} from 'primeng/message';
     MenubarModule,
     ProgressBarModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    AutoCompleteModule
   ]
 })
 export class PrimeNgModule { }
