@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Provincia } from '../../interfaces/provincia.interface';
 import { BuscadorService } from '../../services/buscador.service';
 import { Municipio } from '../../interfaces/municipios.interface';
-import { switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css'],
 })
-export class PrincipalComponent implements OnInit {
+export class PrincipalComponent implements OnInit, OnDestroy {
   loading = false;
   buscando = false;
   error?: string;
@@ -21,14 +20,22 @@ export class PrincipalComponent implements OnInit {
   provinciaSeleccionada?: Provincia;
   municipioSeleccionado?: Municipio;
 
+  obs?: Subscription;
+  obs2?: Subscription;
+
   constructor(
     private buscadorService: BuscadorService,
     private router: Router
   ) {}
 
+  ngOnDestroy(): void {
+    this.obs?.unsubscribe;
+    this.obs2?.unsubscribe;
+  }
+
   ngOnInit(): void {
     this.loading = true;
-    this.buscadorService.getProvincias().subscribe(
+    this.obs = this.buscadorService.getProvincias().subscribe(
       ({ provincias }) => {
         this.provincias = provincias;
         this.loading = false;
@@ -49,7 +56,7 @@ export class PrincipalComponent implements OnInit {
     this.municipioSeleccionado = undefined;
 
     if (this.provinciaSeleccionada !== undefined) {
-      this.buscadorService
+      this.obs2 = this.buscadorService
       .getMunicipiosDeProvincia(this.provinciaSeleccionada?.CODPROV)
       .subscribe(({ municipios }) => {
         this.municipios = municipios;

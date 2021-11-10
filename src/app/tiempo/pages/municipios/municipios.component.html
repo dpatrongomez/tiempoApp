@@ -6,7 +6,7 @@
 </div>
 
 
-<div *ngIf="tiempo" class="text-layout">
+<div *ngIf="tiempo && !loading && !error" class="text-layout">
     <h1 class="titulo">{{tiempo.municipio.NOMBRE}} - {{tiempo.municipio.NOMBRE_PROVINCIA}}</h1>
     <h1>{{(tiempo.fecha | date: 'EEEE, d MMMM' : '' : 'es') | uppercase}}</h1>
     <div class="grid">
