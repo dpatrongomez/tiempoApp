@@ -1,16 +1,26 @@
-html, body {
-    margin: 10px;
-    background-color: var(--surface-b);
-    font-family: var(--font-family);
+html,
+body {
+  margin: 10px;
+  background-color: var(--surface-b);
+  font-family: var(--font-family);
 }
 
 .text-layout {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .centered {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+::-webkit-scrollbar {
+  background-color: var(--surface-b);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
