@@ -35,11 +35,14 @@ export class IconoPipe implements PipeTransform {
     if (['16', '16n', '14', '14n'].includes(valor)) {
       return 'assets/weather-icons/cloudy.svg';
     }
-    if (['26', '26n', '25', '25n', '46', '46n'].includes(valor)) {
-      return 'assets/weather-icons/drizzle.svg';
-    }
     if (['54', '54n', '64', '64n'].includes(valor)) {
       return 'assets/weather-icons/thunderstorms-rain.svg';
+    }
+    if (['36', '36n', '74', '74n'].includes(valor)) {
+      return 'assets/weather-icons/snow.svg';
+    }
+    if (['26', '26n', '25', '25n','45', '45n', '46', '46n'].includes(valor)) {
+      return 'assets/weather-icons/drizzle.svg';
     }
     return 'assets/weather-icons/not-available.svg';
   }
