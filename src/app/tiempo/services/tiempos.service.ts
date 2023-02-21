@@ -13,7 +13,8 @@ export class TiempoService {
   constructor(private http: HttpClient) { }
 
   getTiempoMunicipio(id: string): Observable<Tiempo> {
-    const url = `${this._apiUrl}/provincias/0/municipios/${id}`;
+    const provinceId = id.slice(0, 2)
+    const url = `${this._apiUrl}/provincias/${provinceId}/municipios/${id}`;
     return this.http.get<Tiempo>(url);
   }
 }
