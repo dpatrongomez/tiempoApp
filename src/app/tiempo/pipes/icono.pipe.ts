@@ -17,10 +17,10 @@ export class IconoPipe implements PipeTransform {
     if (valor === '43') {
       return 'assets/weather-icons/partly-cloudy-day-drizzle.svg';
     }
-    if (['12', '17'].includes(valor)) {
+    if (['12', '13', '17'].includes(valor)) {
       return 'assets/weather-icons/partly-cloudy-day.svg';
     }
-    if (['12n', '17n'].includes(valor)) {
+    if (['12n', '13n', '17n'].includes(valor)) {
       return 'assets/weather-icons/partly-cloudy-night.svg';
     }
     if (['15n', '15'].includes(valor)) {
@@ -41,7 +41,7 @@ export class IconoPipe implements PipeTransform {
     if (['36', '36n', '74', '74n'].includes(valor)) {
       return 'assets/weather-icons/snow.svg';
     }
-    if (['26', '26n', '25', '25n','45', '45n', '46', '46n'].includes(valor)) {
+    if (['26', '26n', '25', '25n', '45', '45n', '46', '46n'].includes(valor)) {
       return 'assets/weather-icons/drizzle.svg';
     }
     return 'assets/weather-icons/not-available.svg';
