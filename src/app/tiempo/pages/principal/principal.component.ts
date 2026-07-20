@@ -29,8 +29,8 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.obs?.unsubscribe;
-    this.obs2?.unsubscribe;
+    this.obs?.unsubscribe();
+    this.obs2?.unsubscribe();
   }
 
   ngOnInit(): void {

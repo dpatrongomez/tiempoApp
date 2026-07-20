@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { EndpointProvincias } from '../interfaces/provincia.interface';
 import { EndpointMunicipios } from '../interfaces/municipios.interface';
 import { MunicipioBuscador } from '../interfaces/buscador.interface';
@@ -10,7 +11,7 @@ import { MunicipioBuscador } from '../interfaces/buscador.interface';
 })
 export class BuscadorService {
 
-  private _apiUrl: string  = 'https://www.el-tiempo.net/api/json/v2';
+  private _apiUrl: string  = 'https://api.el-tiempo.net/json/v3';
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +26,21 @@ export class BuscadorService {
   }
 
   getMunicipios(): Observable<MunicipioBuscador[]> {
-    const url: string = `${this._apiUrl}/municipios`
-    return this.http.get<MunicipioBuscador[]>(url);
+    return this.getProvincias().pipe(
+      switchMap(({ provincias }) =>
+        forkJoin(
+          provincias.map((provincia) =>
+            this.getMunicipiosDeProvincia(provincia.CODPROV)
+          )
+        ).pipe(
+          map((respuestas) =>
+            respuestas.reduce(
+              (municipios, respuesta) => municipios.concat(respuesta.municipios),
+              [] as MunicipioBuscador[]
+            )
+          )
+        )
+      )
+    );
   }
 }

@@ -20,9 +20,9 @@ export class MunicipiosComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private tiemposService: TiempoService
   ) {}
-  
+
   ngOnDestroy(): void {
-    this.obs?.unsubscribe;
+    this.obs?.unsubscribe();
   }
 
   ngOnInit(): void {

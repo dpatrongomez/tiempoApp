@@ -1,6 +1,19 @@
+export interface ApiOrigen {
+    productor: string;
+    web: string;
+    language: string;
+    copyright: string;
+    nota_legal: string;
+    descripcion: string;
+}
+
 export interface Tiempo {
+    origin?: ApiOrigen;
+    origen?: ApiOrigen;
+    elaborado?: string;
+    title?: string;
     municipio:          Municipio;
-    fecha:              Date;
+    fecha:              string;
     stateSky:           StateSky;
     temperatura_actual: string;
     temperaturas:       Temperaturas;

@@ -1,25 +1,24 @@
+import { MunicipioBuscador } from './buscador.interface';
+
 export interface EndpointMunicipios {
+    origin?:         Origen;
+    origen?:         Origen;
     title:           string;
     provincia:       string;
     codprov:         string;
-    metadescripcion: string;
-    keywords:        string;
+    metadescripcion?: string;
+    keywords?:        string;
     municipios:      Municipio[];
 }
 
 
+export interface Municipio extends MunicipioBuscador {}
 
-export interface Municipio {
-    CODIGOINE:                string;
-    ID_REL:                   string;
-    COD_GEO:                  string;
-    CODPROV:                  string;
-    NOMBRE_PROVINCIA:         string;
-    NOMBRE:                   string;
-    POBLACION_MUNI:           number;
-    SUPERFICIE:               number;
-    PERIMETRO:                number;
-    CODIGOINE_CAPITAL:        string;
-    NOMBRE_CAPITAL:           string;
-    POBLACION_CAPITAL:        string;
+export interface Origen {
+    productor: string;
+    web: string;
+    language: string;
+    copyright: string;
+    nota_legal: string;
+    descripcion: string;
 }
