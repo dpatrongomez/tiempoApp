@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MunicipioBuscador } from 'src/app/tiempo/interfaces/buscador.interface';
 import { BuscadorService } from '../../tiempo/services/buscador.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -20,19 +21,23 @@ export class MenuComponent implements OnInit {
   hayError: boolean = false;
   municipios: MunicipioBuscador[] = [];
   municipiosFiltrados: MunicipioBuscador[] = [];
+  cargandoMunicipios = false;
+  municipiosCargados = false;
+  ultimaQuery = '';
 
   municipioSeleccionado?: MunicipioBuscador;
+  private municipiosObs?: Subscription;
 
   filter(event: any) {
-    let filtered: MunicipioBuscador[] = [];
-    let query = event.query;
-    for (let i = 0; i < this.municipios.length; i++) {
-      let municipio = this.municipios[i];
-      if (municipio.NOMBRE.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-        filtered.push(municipio);
-      }
+    const query = (event.query || '').trim();
+    this.ultimaQuery = query;
+
+    if (!this.municipiosCargados) {
+      this.cargarMunicipios();
+      return;
     }
-    this.municipiosFiltrados = filtered;
+
+    this.municipiosFiltrados = this.filtrarMunicipios(query);
   }
 
   buscar(municipio: MunicipioBuscador) {
@@ -56,9 +61,40 @@ export class MenuComponent implements OnInit {
         routerLink: [''],
       },
     ];
+  }
 
-    this.buscadorService.getMunicipios().subscribe((municipios) => {
-      this.municipios = municipios;
+  ngOnDestroy(): void {
+    this.municipiosObs?.unsubscribe();
+  }
+
+  private cargarMunicipios(): void {
+    if (this.cargandoMunicipios) {
+      return;
+    }
+
+    this.cargandoMunicipios = true;
+    this.municipiosObs = this.buscadorService.getMunicipios().subscribe({
+      next: (municipios) => {
+        this.municipios = municipios;
+        this.municipiosCargados = true;
+        this.municipiosFiltrados = this.filtrarMunicipios(this.ultimaQuery);
+      },
+      error: () => {
+        this.hayError = true;
+      },
+      complete: () => {
+        this.cargandoMunicipios = false;
+      },
     });
+  }
+
+  private filtrarMunicipios(query: string): MunicipioBuscador[] {
+    if (!query) {
+      return [];
+    }
+
+    return this.municipios.filter((municipio) =>
+      municipio.NOMBRE.toLowerCase().indexOf(query.toLowerCase()) === 0
+    );
   }
 }
